@@ -1,0 +1,46 @@
+---
+# tasks file for r_scrape
+- name: Install dumb init 
+  get_url: 
+    dest: /usr/bin/dumb-init
+    url: https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_amd64
+    mode: 0775
+    validate_certs: no
+
+- name: Install pip 
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: yes
+
+- name: Create reddit user
+  user:
+    name: reddit
+    uid: 1000
+    group: root
+    state: present
+    createhome: yes
+    home: "/app"
+
+- name: Copy source into container
+  synchronize: 
+    src: "../r_scrape/"
+    dest: "/app"
+  remote_user: reddit
+
+- name: Install r_scrape dependencies
+  shell: pip3 install -r /app/requirements.txt
+
+- name: Remove default config
+  file: 
+    path: /app/config.json
+    state: absent
+
+- name: Write config.json file
+  template: 
+    src: app/config.json.j2
+    dest: /app/config.json
+    owner: reddit
+    mode: 0664
+  become: yes
+  become_user: reddit
