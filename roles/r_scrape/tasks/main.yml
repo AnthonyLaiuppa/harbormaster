@@ -13,6 +13,12 @@
     state: present
     update_cache: yes
 
+- name: install vim 
+  apt: 
+    name: vim
+    state: present
+    update_cache: yes 
+
 - name: Create reddit user
   user:
     name: reddit
@@ -44,3 +50,9 @@
     mode: 0664
   become: yes
   become_user: reddit
+
+#- name: list dir
+#  command: ls -alh
+
+#- name: run test script 
+#  script: /app/test.py

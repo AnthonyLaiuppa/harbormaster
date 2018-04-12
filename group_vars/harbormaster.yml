@@ -1,0 +1,15 @@
+---
+######reddit vars ######
+r_id: 
+r_secret: 
+r_ua: 
+r_un: 
+
+######detail vars ######
+keywords:  
+subreddit:
+
+######slack vars #####
+token: 
+bot_name: 
+channel: 

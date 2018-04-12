@@ -1,17 +1,17 @@
 {
  "reddit": {
-   "id": "{{ r_id }}",
-   "secret": "{{ r_secret }}",
-   "user_agent": "{{ r_ua }}",
-   "username": "{{ r_un }}"
+   "id": {{ r_id | to_json }},
+   "secret": {{ r_secret | to_json }},
+   "user_agent": {{ r_ua | to_json }},
+   "username": {{ r_un | to_json }}
   },
  "details": {
-   "keywords": "{{ keywords }}",
-   "subreddit": "{{ subreddit }}"
+   "keywords": {{ keywords | to_json }},
+   "subreddit": {{ subreddit | to_json }}
   },
  "slack": {
-   "token": "{{ token }}",
-   "bot_name": "{{ bot_name }}",
-   "channel": "{{ channel }}" 
+   "token": {{ token | to_json }},
+   "bot_name": {{ bot_name | to_json }},
+   "channel": {{ channel | to_json }} 
   }
 }
